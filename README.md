@@ -31,26 +31,8 @@ Manage Access
    ↓
 Notify Administrator
 
-API Factory این جریان را به یک محیط مدیریتی یکپارچه تبدیل می‌کند:
 
-                 ┌─────────────────────┐
-                 │    API Factory Pro  │
-                 │  Service Control    │
-                 │       Plane         │
-                 └──────────┬──────────┘
-                            │
-        ┌───────────────────┼───────────────────┐
-        │                   │                   │
-        ▼                   ▼                   ▼
-   Databases          API Services         Monitoring
-        │                   │                   │
-   MySQL / PG          Python / Flask      Logs / Alarms
-        │                   │                   │
-        └───────────────────┼───────────────────┘
-                            │
-                            ▼
-                      Bale Bot
-                    Notifications
+
 
 🚀 قابلیت‌های اصلی :
 
