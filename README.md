@@ -1,16 +1,18 @@
-⚡ API Factory Pro
-Build. Secure. Monitor. Control.
+# ⚡ API Factory Pro
 
-یک پنل مدیریتی سبک، مدرن و یکپارچه برای ساخت، مدیریت، مانیتورینگ و کنترل وب سرویس ها است؛ با این هدف که فاصله بین دیتابیس، سرویس‌های Python و یک API قابل استفاده را تا حد ممکن کوتاه کند.
+> **Build. Secure. Monitor. Control.**
 
-به‌جای اینکه برای هر API به‌صورت جداگانه کدنویسی، تنظیم پورت، اجرای Process، بررسی Log، مدیریت API Key و پایش سرویس انجام شود، API Factory همه این مراحل را در یک Service Control Plane متمرکز می‌کند.
+یک پنل مدیریتی سبک، مدرن و یکپارچه برای **ساخت، مدیریت، اجرا، مانیتورینگ و کنترل Web Serviceها**.
 
-From Database to API — From API to Monitoring.
+> **From Database to API — From API to Monitoring.**
 
-✨ چرا API Factory Pro؟
+API Factory Pro به‌جای پراکنده‌کردن فرآیند ساخت API بین کدنویسی، تنظیم Port، اجرای Process، مدیریت API Key، بررسی Log و Monitoring، این چرخه را در یک **Service Control Plane** متمرکز می‌کند.
 
-در بسیاری از محیط‌های سازمانی، ساخت یک Web Service ساده می‌تواند شامل چندین مرحله مستقل باشد:
+---
 
+## ✨ چرا API Factory Pro؟
+
+```text
 Database
    ↓
 Write Python Code
@@ -30,46 +32,46 @@ Detect Errors
 Manage Access
    ↓
 Notify Administrator
+```
+
+```mermaid
+flowchart LR
+    DB[(Database)] --> API[API Factory Pro]
+    API --> CODE[Generated API]
+    CODE --> PM2[PM2 / Runtime]
+    PM2 --> MON[Monitoring]
+    MON --> LOG[Logs]
+    MON --> ALERT[Alarms]
+    ALERT --> BALE[Bale Bot]
+```
+
+---
+
+## 🚀 قابلیت‌های اصلی
+
+| قابلیت | توضیح |
+|---|---|
+| 🗄️ Database | اتصال و مدیریت MySQL و PostgreSQL |
+| ⚡ Create API | ساخت سریع API از روی Database |
+| 🧙 Wizard | ساخت API بدون نیاز به نوشتن کامل Backend |
+| 👨‍💻 کد نویسی | ساخت API با Python/Flask |
+| 🔌 Ports | مشاهده و مدیریت Portهای سرویس‌ها |
+| 🔑 API Keys | مدیریت دسترسی APIها |
+| 🛠️ API Management | کنترل Lifecycle سرویس‌ها |
+| 📋 Logs | مشاهده Log سرویس‌ها |
+| 🚨 Alarms | تشخیص خطاهای HTTP 5xx |
+| 📊 Traffic | مشاهده وضعیت مصرف و عملکرد API |
+| 👤 Users | مدیریت کاربران و دسترسی‌ها |
+| 💬 Bale Bot | Notification و Monitoring از طریق بله |
+| 📈 Dashboard | مشاهده وضعیت کلی سیستم |
+| 🔐 Authentication | احراز هویت و Session Management |
+| 📱 Responsive UI | رابط کاربری مناسب برای اندازه‌های مختلف صفحه |
+
+---
 
 
 
-
-🚀 قابلیت‌های اصلی :
-
-🗄️ اتصال به MySQL و PostgreSQL
-⚡ ساخت Web Service از طریق Wizard
-🧩 پشتیبانی از Join چند جدول
-🐍 ساخت API با کدنویسی Python/Flask
-▶️ اجرای سرویس‌ها با PM2
-⏹️ Start / Stop / Delete سرویس‌ها
-🔌 مدیریت Portها
-🔑 مدیریت API Key
-🛠️ ویرایش مستقیم Source Code سرویس‌ها
-📋 مشاهده Log سرویس‌ها
-🚨 تشخیص HTTP 5xx و ایجاد Alarm
-📊 مشاهده Traffic و Latency
-👤 مدیریت کاربران و Permissionها
-💬 اتصال به Bale Bot
-🔔 ارسال Notification و Alarm از طریق بله
-🔄 Polling و Webhook برای Bale
-🎨 رابط کاربری مدرن RTL
-🔐 Authentication و Session Management
-📱 رابط Responsive برای اندازه‌های مختلف صفحه
-🖥️ Dashboard
-داشبورد، نقطه شروع سیستم است.
-
-در این بخش وضعیت کلی محیط API Factory در یک نگاه قابل مشاهده است.
-
-اطلاعاتی مانند:
-
-تعداد سرویس‌ها
-وضعیت سرویس‌ها
-وضعیت Runtime
-سرویس‌های اخیر
-وضعیت کلی زیرساخت
-
-
-🗄️ Database
+# 🗄️ Database
 ![database](docs/screenshots/database.png)
 
 بخش Database محل تعریف و مدیریت Connectionهای دیتابیس است.
@@ -83,7 +85,7 @@ PostgreSQL
 
 پس از ذخیره، Connection برای استفاده در API Builder در دسترس قرار می‌گیرد.
 
-⚡ Create API
+# ⚡ Create API
 
 یکی از مهم‌ترین بخش‌های API Factory.
 
@@ -116,7 +118,7 @@ Customers
 
 این حالت برای APIهای پیچیده‌تر، Logicهای اختصاصی، محاسبات سفارشی و Integrationهای خاص مناسب است.
 
-🔑 API Keys
+# 🔑 API Keys
 ![keys](docs/screenshots/keys.png)
 
 
@@ -126,7 +128,7 @@ Customers
 
 این ساختار اجازه می‌دهد مصرف‌کنندگان مختلف یک API با Credentialهای جداگانه کار کنند.
 
-🔌 Ports
+# 🔌 Ports
 
 هر Service برای اجرا به یک Port نیاز دارد.
 
@@ -144,7 +146,7 @@ Service
 
 این موضوع در محیط‌هایی که تعداد زیادی API داخلی روی یک Server اجرا می‌شوند اهمیت زیادی دارد.
 
-🛠️ API Management
+# 🛠️ API Management
 ![manage](docs/screenshots/manage.png)
 
 
@@ -170,7 +172,7 @@ Save Changes
 
 را مستقیماً از داخل پنل انجام دهد.
 
-⚙️ Services
+# ⚙️ Services
 
 بخش Services نمای Runtime سرویس‌هاست.
 
@@ -186,7 +188,7 @@ Save Changes
 
 به این ترتیب Administrator برای عملیات روزمره الزاماً نیازی به ورود مستقیم به Shell Server ندارد.
 
-📋 Service Logs
+# 📋 Service Logs
 
 Debug کردن یک API بدون Log تقریباً غیرممکن است.
 
@@ -198,7 +200,7 @@ pm2 logs service_name
 
 Administrator می‌تواند Log را مستقیماً از UI مشاهده کند.
 
-🚨 Alarms
+# 🚨 Alarms
 
 API Factory می‌تواند HTTP Server Errorهای واقعی را شناسایی کند.
 
@@ -210,7 +212,7 @@ HTTP 5xx
 
 این بخش یک لایه ساده اما کاربردی برای تشخیص سریع سرویس‌های مشکل‌دار ایجاد می‌کند.
 
-📊 Traffic
+# 📊 Traffic
 
 بخش Traffic برای مشاهده رفتار سرویس‌ها طراحی شده است.
 
@@ -235,7 +237,7 @@ Timestamp
 
 چه زمانی ترافیک افزایش پیدا کرده است؟
 
-👤 Users
+# 👤 Users
 
 API Factory فقط برای یک Administrator ساخته نشده است.
 
@@ -250,7 +252,7 @@ Permissions
 
 را مشخص کرد.
 
-💬 Bale Bot
+# 💬 Bale Bot
 ![bale](docs/screenshots/bale.png)
 
 
