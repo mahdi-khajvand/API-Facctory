@@ -99,12 +99,8 @@ PostgreSQL
 
 ** می‌توان از چند جدول دیتابیس یک API ساخت:
 
-Customers
-     │
-     ├──── JOIN ──── MeterInfo
-     │
-     └──── JOIN ──── Billing
-
+Customers --> (table-1 join table-2)
+     
 و خروجی را به شکل یک Endpoint در اختیار سایر سیستم‌ها قرار داد.
 
 
