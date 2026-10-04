@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>API Factory Pro</title>
+  <link rel="stylesheet" href="/static/css/app.css" />
+</head>
+<body>
+  <!-- LOGIN -->
+  <div id="loginView" class="login-wrap">
+    <div class="login-card">
+      <div class="brand-logo logo-api" aria-hidden="true">
+  <svg viewBox="0 0 40 40" width="22" height="22" fill="none">
+    <rect x="4" y="4" width="12" height="12" rx="3" stroke="currentColor" stroke-width="2"/>
+    <rect x="24" y="4" width="12" height="12" rx="3" stroke="currentColor" stroke-width="2"/>
+    <rect x="14" y="24" width="12" height="12" rx="3" stroke="currentColor" stroke-width="2"/>
+    <path d="M16 10h8M10 16v8M30 16v4c0 2-2 4-4 4h-2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+  </svg>
+</div>
+      <div class="eyebrow" style="text-align:center;color:#a78bfa;font-size:.75rem;font-weight:800;">SECURE ACCESS</div>
+      <h2 style="text-align:center;">API Factory Pro</h2>
+      <p class="sub" style="text-align:center;">پنل حرفه‌ای مدیریت وب‌سرویس‌ها</p>
+      <label class="field"><span>نام کاربری</span><input id="loginUser" autocomplete="username" /></label>
+      <label class="field"><span>رمز عبور</span><input id="loginPass" type="password" autocomplete="current-password" /></label>
+      <button class="btn btn-primary btn-block" id="loginBtn">ورود به پنل</button>
+    </div>
+  </div>
+
+  <!-- APP -->
+  <div id="appView" class="app hidden">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-logo logo-api" aria-hidden="true">
+  <svg viewBox="0 0 40 40" width="22" height="22" fill="none">
+    <rect x="4" y="4" width="12" height="12" rx="3" stroke="currentColor" stroke-width="2"/>
+    <rect x="24" y="4" width="12" height="12" rx="3" stroke="currentColor" stroke-width="2"/>
+    <rect x="14" y="24" width="12" height="12" rx="3" stroke="currentColor" stroke-width="2"/>
+    <path d="M16 10h8M10 16v8M30 16v4c0 2-2 4-4 4h-2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+  </svg>
+</div>
+        <div>
+          <h1>API Factory</h1>
+          <p>Service Control Plane</p>
+        </div>
+      </div>
+            <nav class="nav" id="nav">
+        <button data-page="dashboard" class="active nav-item">
+          <span class="nav-ico">🏠</span>
+          <span class="nav-txt"><b>Dashboard</b><small>نمای کلی وضعیت</small></span>
+        </button>
+
+        <div class="nav-group">
+          <button type="button" class="nav-sec-toggle">API FACTORY <span class="nav-chevron">▾</span></button>
+          <div class="nav-group-body">
+            <button data-page="db" class="nav-item nav-sub"><span class="nav-ico">🗄️</span><span class="nav-txt"><b>Database</b><small>اتصالات دیتابیس</small></span></button>
+            <button data-page="create" class="nav-item nav-sub"><span class="nav-ico">⚡</span><span class="nav-txt"><b>Create API</b><small>ساخت وب‌سرویس</small></span></button>
+            <button data-page="keys" class="nav-item nav-sub"><span class="nav-ico">🔑</span><span class="nav-txt"><b>API Keys</b><small>مدیریت کلیدها</small></span></button>
+            <button data-page="ports" class="nav-item nav-sub"><span class="nav-ico">🔌</span><span class="nav-txt"><b>Ports</b><small>مدیریت پورت‌ها</small></span></button>
+            <button data-page="apimgmt" class="nav-item nav-sub"><span class="nav-ico">🛠️</span><span class="nav-txt"><b>API Management</b><small>لیست · ویرایش · حذف</small></span></button>
+          </div>
+        </div>
+
+        <div class="nav-group">
+          <button type="button" class="nav-sec-toggle">MONITORING <span class="nav-chevron">▾</span></button>
+          <div class="nav-group-body">
+            <button data-page="monitor" class="nav-item nav-sub"><span class="nav-ico">⚙️</span><span class="nav-txt"><b>Services</b><small>فعال / غیرفعال</small></span></button>
+            <button data-page="logs" class="nav-item nav-sub"><span class="nav-ico">📋</span><span class="nav-txt"><b>Service Logs</b><small>لاگ هر سرویس</small></span></button>
+            <button data-page="alarms" class="nav-item nav-sub"><span class="nav-ico">🚨</span><span class="nav-txt"><b>Alarms</b><small>خطاهای HTTP 5xx</small></span></button>
+            <button data-page="analytics" class="nav-item nav-sub"><span class="nav-ico">📊</span><span class="nav-txt"><b>Traffic</b><small>ترافیک و latency</small></span></button>
+          </div>
+        </div>
+
+        <div class="nav-group">
+          <button type="button" class="nav-sec-toggle">ADMIN <span class="nav-chevron">▾</span></button>
+          <div class="nav-group-body">
+            <button data-page="users" class="nav-item nav-sub"><span class="nav-ico">👤</span><span class="nav-txt"><b>Users</b><small>کاربران و دسترسی</small></span></button>
+            <button data-page="bale" class="nav-item nav-sub"><span class="nav-ico">💬</span><span class="nav-txt"><b>Bale Bot</b><small>اتصال ربات بله</small></span></button>
+          </div>
+        </div>
+      </nav>
+      <div class="sidebar-foot">
+        <button class="btn btn-ghost btn-block" id="logoutBtn">خروج</button>
+      </div>
+    </aside>
+
+    <main class="main">
+      <!-- DASHBOARD -->
+      <section id="page-dashboard" class="page">
+        <div class="hero">
+          <div class="eyebrow">CONTROL CENTER</div>
+          <h2>داشبورد عملیاتی</h2>
+          <p>وضعیت سرویس‌ها، درخواست‌ها و زیرساخت در یک نگاه</p>
+        </div>
+        <div class="stats" id="dashStats"></div>
+        <div class="panel">
+          <h3><span class="dot"></span> سرویس‌های اخیر</h3>
+          <div id="dashServices"></div>
+        </div>
+      </section>
+
+      <!-- CREATE -->
+      <section id="page-create" class="page hidden">
+        <div class="hero">
+          <div class="eyebrow">SERVICE BUILDER</div>
+          <h2>ساخت وب‌سرویس</h2>
+          <p>ویزارد با Join یا نوشتن کد Flask به‌صورت دستی</p>
+        </div>
+        <div class="row-actions" style="margin-bottom:14px">
+          <button class="btn btn-primary" id="tabWizard">ویزارد هوشمند</button>
+          <button class="btn btn-ghost" id="tabManual">کد نویسی</button>
+        </div>
+
+        <div id="wizardBox">
+          <div class="create-steps">
+            <div class="cstep c1"><span class="cnum">1</span><span>دیتابیس</span></div>
+            <div class="cstep-line"></div>
+            <div class="cstep c2"><span class="cnum">2</span><span>Join</span></div>
+            <div class="cstep-line"></div>
+            <div class="cstep c3"><span class="cnum">3</span><span>فیلدها</span></div>
+            <div class="cstep-line"></div>
+            <div class="cstep c4"><span class="cnum">4</span><span>اجرا</span></div>
+          </div>
+          <div class="panel">
+            <h3><span class="dot"></span> منبع و جدول اصلی</h3>
+            <div class="grid-2">
+              <label class="field"><span>دیتابیس</span><select id="crDb"></select></label>
+              <label class="field"><span>جدول اصلی</span><select id="crTable"></select></label>
+            </div>
+          </div>
+          <div class="panel">
+            <h3><span class="dot"></span> Join جداول (اختیاری — تا ۲ جدول)</h3>
+            <label class="field"><span>تعداد Join</span>
+              <select id="crJoinCount"><option value="0">0</option><option value="1">1</option><option value="2">2</option></select>
+            </label>
+            <div id="joinBoxes"></div>
+          </div>
+          <div class="panel">
+            <h3><span class="dot"></span> فیلدها و فیلتر</h3>
+            <label class="field"><span>فیلدهای خروجی (Ctrl / Cmd برای چندتایی)</span>
+              <select id="crFields" multiple size="10" style="min-height:160px"></select>
+            </label>
+            <div class="grid-3">
+              <label class="field"><span>فیلتر مقدار</span><select id="crFilter"></select></label>
+              <label class="field"><span>بازه زمانی</span><select id="crTime"></select></label>
+              <label class="field"><span>Limit</span><input id="crLimit" type="number" value="100" /></label>
+            </div>
+            <label style="display:flex;gap:8px;align-items:center;margin-bottom:12px;color:var(--muted);font-size:.85rem;">
+              <input type="checkbox" id="crAuth" /> نیاز به API Key
+            </label>
+          </div>
+          <div class="panel">
+            <h3><span class="dot"></span> نام و مسیر</h3>
+            <div class="grid-2">
+              <label class="field"><span>نام فایل سرویس</span><input id="crName" placeholder="joined_service" /></label>
+              <label class="field"><span>Route</span><input id="crRoute" value="/api/joined" /></label>
+            </div>
+            <p class="muted mono" id="crPreview" style="margin-bottom:12px"></p>
+            <button class="btn btn-primary" id="crSubmit">ایجاد و اجرای سرویس</button>
+          </div>
+        </div>
+
+        <div id="manualBox" class="hidden">
+          <div class="panel">
+            <h3><span class="dot"></span> ساخت دستی با کد Flask</h3>
+            <div class="grid-2">
+              <label class="field"><span>نام فایل</span><input id="manName" placeholder="my_custom_api" /></label>
+              <label class="field"><span>نمونه آدرس API</span><input id="manRoute" placeholder="/api/meterinfo?start=2024-01-01" /></label>
+            </div>
+            <label class="field"><span>کد پایتون</span>
+              <textarea id="manCode" rows="16" class="mono" style="direction:ltr;text-align:left;font-size:.82rem">from flask import Flask, jsonify
+app = Flask(__name__)
+
+@app.route('/api/meterinfo')
+def meterinfo():
+    return jsonify({"message": "سرویس شما فعال است!"})
+</textarea>
+            </label>
+            <button class="btn btn-primary" id="manSubmit">ایجاد و اجرای سرویس دستی</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- MONITOR -->
+      <section id="page-monitor" class="page hidden">
+        <div class="hero">
+          <div class="eyebrow">RUNTIME</div>
+          <h2>مانیتورینگ و لاگ</h2>
+          <p>شروع / توقف با PM2 و مشاهده لاگ</p>
+        </div>
+        <div id="monitorList"></div>
+        <div class="panel hidden" id="logPanel">
+          <h3><span class="dot"></span> لاگ <span id="logTitle" class="muted"></span></h3>
+          <div class="log-box" id="logBox"></div>
+        </div>
+      </section>
+
+      <!-- PORTS -->
+      <section id="page-ports" class="page hidden">
+        <div class="hero">
+          <div class="eyebrow">NETWORK</div>
+          <h2>مدیریت پورت‌ها</h2>
+          <p>پورت‌های LISTEN و آزاد محدوده API</p>
+        </div>
+        <div class="panel">
+          <h3><span class="dot"></span> در حال استفاده</h3>
+          <div class="table-wrap"><table><thead><tr>
+            <th>پورت</th><th>وضعیت</th><th>PID</th><th>پردازه</th><th>سرویس</th>
+          </tr></thead><tbody id="portsBody"></tbody></table></div>
+        </div>
+        <div class="panel">
+          <h3><span class="dot"></span> پورت‌های آزاد (۵۰۰۰–۵۱۰۰)</h3>
+          <div class="chips" id="freePorts"></div>
+        </div>
+      </section>
+
+      <!-- DB -->
+      <section id="page-db" class="page hidden">
+        <div class="hero">
+          <div class="eyebrow">DATA SOURCE</div>
+          <h2>اتصال دیتابیس</h2>
+          <p>MySQL و PostgreSQL</p>
+        </div>
+        <div class="panel">
+          <h3><span class="dot"></span> افزودن</h3>
+          <div class="grid-2">
+            <label class="field"><span>نام مستعار</span><input id="dbLabel" /></label>
+            <label class="field"><span>نوع</span>
+              <select id="dbType"><option value="mysql">MySQL</option><option value="postgres">PostgreSQL</option></select>
+            </label>
+            <label class="field"><span>Host</span><input id="dbHost" value="localhost" /></label>
+            <label class="field"><span>Port</span><input id="dbPort" type="number" value="3306" /></label>
+            <label class="field"><span>User</span><input id="dbUser" value="root" /></label>
+            <label class="field"><span>Password</span><input id="dbPass" type="password" /></label>
+          </div>
+          <label class="field"><span>Database</span><input id="dbName" /></label>
+          <button class="btn btn-primary" id="dbSave">ذخیره و تست</button>
+        </div>
+        <div class="panel">
+          <h3><span class="dot"></span> ذخیره‌شده‌ها</h3>
+          <div id="dbList"></div>
+        </div>
+      </section>
+
+      <!-- KEYS -->
+      <section id="page-keys" class="page hidden">
+        <div class="hero">
+          <div class="eyebrow">SECURITY</div>
+          <h2>مدیریت کلید API</h2>
+        </div>
+        <div class="panel">
+          <div class="grid-2">
+            <label class="field"><span>سرویس (نام فایل)</span><input id="keySvc" placeholder="my_service.py" /></label>
+            <label class="field"><span>نام کلید</span><input id="keyName" placeholder="client1" /></label>
+          </div>
+          <button class="btn btn-primary" id="keyAdd">تولید و ذخیره کلید</button>
+        </div>
+        <div class="panel"><h3><span class="dot"></span> کلیدها</h3><div id="keyList"></div></div>
+      </section>
+
+      <!-- ANALYTICS -->
+      <section id="page-analytics" class="page hidden">
+        <div class="hero">
+          <div class="eyebrow">INSIGHTS</div>
+          <h2>تحلیل ترافیک</h2>
+        </div>
+        <div class="panel">
+          <div class="table-wrap"><table><thead><tr>
+            <th>زمان</th><th>سرویس</th><th>Endpoint</th><th>Status</th><th>ms</th><th>Size</th>
+          </tr></thead><tbody id="analyticsBody"></tbody></table></div>
+        </div>
+      </section>
+
+
+      <section id="page-apimgmt" class="page hidden">
+        <div class="hero">
+          <div class="eyebrow">CONTROL</div>
+          <h2>API Management</h2>
+          <p>مدیریت، ویرایش و حذف وب‌سرویس‌ها</p>
+        </div>
+        <div id="apiMgmtList" class="api-card-grid"></div>
+        <div class="panel api-editor-panel" id="apiEditorPanel">
+          <h3><span class="dot"></span> 🛠 API Editor</h3>
+          <div class="grid-2">
+            <label class="field"><span>API Name</span>
+              <select id="arSvc"></select>
+            </label>
+            <label class="field"><span>Endpoint / URL</span>
+              <input id="arEndpoint" class="mono" readonly placeholder="بعد از انتخاب سرویس" />
+            </label>
+          </div>
+          <label class="field"><span>Python Code</span>
+            <textarea id="arCode" class="code-editor" rows="18" spellcheck="false" placeholder="# کد سرویس اینجا می‌آید…"></textarea>
+          </label>
+          <div class="row-actions">
+            <button class="btn btn-primary" id="arSave">💾 Save Changes</button>
+            <button class="btn btn-ghost" id="arLoad">↻ Reload</button>
+          </div>
+        </div>
+      </section>
+
+      <section id="page-testapi" class="page hidden">
+        <div class="hero"><div class="eyebrow">TEST LAB</div><h2>Test API</h2><p>لیست سرویس‌ها · اجرا · خروجی جدولی</p></div>
+        <div class="panel" id="testApiPanel"><p class="muted">در حال بارگذاری…</p></div>
+      </section>
+      <section id="page-logs" class="page hidden">
+        <div class="hero"><div class="eyebrow">LOG STREAM</div><h2>لاگ وب‌سرویس‌ها</h2><p>روی هر سرویس کلیک کنید تا لاگ باز شود</p></div>
+        <div id="logsPanel"><p class="muted">در حال بارگذاری…</p></div>
+      </section>
+      <section id="page-alarms" class="page hidden">
+        <div class="hero"><div class="eyebrow">ALARM CENTER</div><h2>آلارم‌های HTTP 5xx</h2><p>فقط کد خطای واقعی سرور</p></div>
+        <div class="panel" id="alarmsPanel"><p class="muted">در حال بارگذاری…</p></div>
+      </section>
+      <section id="page-users" class="page hidden">
+        <div class="hero"><div class="eyebrow">ACCESS CONTROL</div><h2>Users</h2><p>تعریف کاربر با نقش و دسترسی</p></div>
+        <div id="usersPanel"><p class="muted">در حال بارگذاری…</p></div>
+      </section>
+
+    
+      <section id="page-bale" class="page hidden">
+        <div class="hero">
+          <div class="eyebrow">MESSENGER</div>
+          <h2>اتصال به ربات بله</h2>
+          <p>اعلان آلارم و کنترل سرویس‌ها از طریق پیام‌رسان بله</p>
+        </div>
+        <div class="panel bale-panel">
+          <h3><span class="dot"></span> تنظیمات ربات</h3>
+          <div class="bale-steps">
+            <div class="bale-step"><span>1</span> در بله به <b>@bot_parent</b> یا BotFather بله پیام دهید و ربات بسازید</div>
+            <div class="bale-step"><span>2</span> توکن را اینجا ذخیره کنید و یک‌بار به ربات پیام دهید</div>
+            <div class="bale-step"><span>3</span> chat_id خود را وارد کنید (از getUpdates یا فوروارد به ربات‌های id)</div>
+          </div>
+          <label class="field" style="display:flex;align-items:center;gap:10px;margin-bottom:12px">
+            <input type="checkbox" id="baleEnabled" />
+            <span>فعال‌سازی اتصال بله</span>
+          </label>
+          <div class="grid-2">
+            <label class="field"><span>Bot Token</span><input id="baleToken" type="password" placeholder="123456:ABC-DEF..." /></label>
+            <label class="field"><span>Default Chat ID</span><input id="baleChat" placeholder="مثلاً 123456789" /></label>
+          </div>
+          <label class="field" style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
+            <input type="checkbox" id="baleNotifyAlarms" checked />
+            <span>ارسال خودکار آلارم‌های HTTP 5xx به بله</span>
+          </label>
+          <label class="field" style="display:flex;align-items:center;gap:10px;margin-bottom:12px">
+            <input type="checkbox" id="baleNotifyDown" checked />
+            <span>اعلان توقف سرویس (در نسخه‌های بعدی خودکار)</span>
+          </label>
+          <label class="field" style="display:flex;align-items:center;gap:10px;margin-bottom:12px">
+            <input type="checkbox" id="balePolling" checked />
+            <span>Polling فعال (برای /help بدون نیاز به دامنه عمومی)</span>
+          </label>
+          <div class="row-actions">
+            <button class="btn btn-primary" id="baleSave">💾 ذخیره تنظیمات</button>
+            <button class="btn btn-ghost" id="baleVerify">✓ بررسی توکن</button>
+            <button class="btn btn-ghost" id="baleTest">📨 ارسال پیام تست</button>
+            <button class="btn btn-ghost" id="balePushAlarms">🚨 ارسال آلارم‌ها الان</button>
+            <button class="btn btn-ghost" id="balePollStart">▶ شروع گوش‌دادن</button>
+            <button class="btn btn-ghost" id="balePollStop">■ توقف گوش‌دادن</button>
+          </div>
+          <p class="muted mono" id="baleStatus" style="margin-top:12px"></p>
+          <p class="muted" id="balePollInfo" style="margin-top:8px"></p>
+        </div>
+        <div class="panel">
+          <h3><span class="dot"></span> دستورات ربات</h3>
+          <p class="muted">بعد از «شروع گوش‌دادن»، در چت ربات <b>/start</b> بزنید. منوی دکمه‌ای باز می‌شود:</p>
+          <p>📋 Services (فعال/توقف/حذف/کد/لاگ) · 📊 Traffic · 🚨 Alarms · 📈 Dashboard</p>
+          <p class="muted">دستورات متنی: <b>/start</b> · <b>/services</b> · <b>/traffic</b> · <b>/alarms</b> · <b>/dash</b> · <b>/help</b></p>
+          <p class="muted" style="margin-top:10px">اگر Webhook قبلاً ست شده، برای کار کردن Polling آن را پاک کنید:</p>
+          <pre class="code-editor" style="min-height:auto;padding:12px">https://tapi.bale.ai/bot&lt;TOKEN&gt;/deleteWebhook</pre>
+          <p class="muted" style="margin-top:8px">Webhook اختیاری (فقط با HTTPS عمومی):</p>
+          <pre class="code-editor" style="min-height:auto;padding:12px" id="baleWebhookUrl">https://YOUR_DOMAIN/api/bale/webhook</pre>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  
+  <div id="testModal" class="test-modal hidden">
+    <div class="test-modal-backdrop" data-test-close></div>
+    <div class="test-modal-card">
+      <div class="test-modal-head">
+        <div>
+          <div class="eyebrow">🧪 TEST API</div>
+          <h2 id="tmTitle">Test API</h2>
+          <p class="mono muted" id="tmUrl">—</p>
+        </div>
+        <button type="button" class="about-close" data-test-close>✕</button>
+      </div>
+      <div class="test-modal-body">
+        <div class="row-actions" style="margin-bottom:12px">
+          <button class="btn btn-primary" id="tmSend">▶ Send Request</button>
+          <button class="btn btn-ghost btn-sm tm-view on" data-view="json">JSON</button>
+          <button class="btn btn-ghost btn-sm tm-view" data-view="table">Table</button>
+        </div>
+        <div id="tmMeta" class="tm-meta muted">آماده برای ارسال</div>
+        <div id="tmOut" class="tm-out"></div>
+      </div>
+    </div>
+  </div>
+
+  
+  <div id="confirmModal" class="confirm-modal hidden">
+    <div class="confirm-backdrop" data-confirm-cancel></div>
+    <div class="confirm-card">
+      <h3 id="confirmTitle">Delete API?</h3>
+      <p id="confirmMsg" class="muted">This action cannot be undone.</p>
+      <div class="row-actions" style="justify-content:flex-end;margin-top:16px">
+        <button class="btn btn-ghost" data-confirm-cancel>Cancel</button>
+        <button class="btn btn-danger" id="confirmOk">Delete API</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+  <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+  <script src="/static/js/app.js"></script>
+
+  <div id="welcomeOverlay" class="welcome-overlay hidden">
+    <div class="welcome-orbs"><i class="o1"></i><i class="o2"></i><i class="o3"></i></div>
+    <div class="welcome-card">
+      <div class="welcome-badge">⚡ API FACTORY · SERVICE CONTROL PLANE</div>
+      <h1 class="welcome-title">Welcome to the<br/><span>API Factory Pro</span></h1>
+      <p class="welcome-sub">Build · Secure · Monitor · Visualize web services from one colorful control surface</p>
+      <div class="welcome-pills">
+        <button type="button" class="welcome-pill" data-go="create">Create API</button>
+        <button type="button" class="welcome-pill" data-go="monitor">Monitoring</button>
+      </div>
+      <div class="welcome-bar"><i id="welcomeBarFill"></i></div>
+      <div class="welcome-status"><span class="welcome-dot"></span> <span id="welcomeStatusText">Initializing modules…</span></div>
+      <div class="welcome-foot">API FACTORY PRO · DESIGNED BY M-KH</div>
+      <button type="button" class="btn btn-primary welcome-enter" id="welcomeEnter">ورود به پنل</button>
+    </div>
+    <div class="welcome-toast" id="welcomeToast">⚡ Access Granted</div>
+  </div>
+
+  <div class="fab-stack is-closed" id="fabStack">
+    <button type="button" id="fabToggle" class="fab-toggle" title="منو" onclick="window.__afToggleFab&&window.__afToggleFab()">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 6l6 6-6 6"/></svg>
+    </button>
+    <div class="fab-items" id="fabItems">
+      <button type="button" id="helpFab" class="help-fab" title="راهنما" onclick="window.__afOpenHelp&&window.__afOpenHelp()">?</button>
+      <button type="button" id="userFab" class="user-fab" title="کاربر" onclick="window.__afToggleUser&&window.__afToggleUser(event)">👤</button>
+      <button type="button" id="aboutFab" class="about-fab" title="About" onclick="window.__afOpenAbout&&window.__afOpenAbout()">!</button>
+    </div>
+  </div>
+  <div id="userPopover" class="user-popover hidden">
+    <div class="user-pop-title">Active Session</div>
+    <div class="user-pop-row"><span>User</span><b id="userPopName">—</b></div>
+    <div class="user-pop-row"><span>Role</span><b id="userPopRole">admin</b></div>
+    <div class="user-pop-row"><span>Uptime</span><b id="userPopUptime">—</b></div>
+  </div>
+  <div id="aboutModal" class="about-modal hidden">
+    <div class="about-backdrop" data-about-close onclick="window.__afCloseAbout&&window.__afCloseAbout()"></div>
+    <div class="about-card">
+      <button type="button" class="about-close" data-about-close onclick="window.__afCloseAbout&&window.__afCloseAbout()">✕</button>
+      <div class="about-badge">API FACTORY PRO</div>
+      <h2 class="about-title">Service Control Plane</h2>
+      <p class="about-lead">A professional surface to design, secure, deploy and observe REST services — with join-aware builders, port control, PM2-style process views, and real HTTP 5xx alarms.</p>
+      <div class="about-grid">
+        <div class="about-chip">API Builder</div>
+        <div class="about-chip">Monitoring</div>
+        <div class="about-chip">Key Vault</div>
+      </div>
+      <div class="about-divider"></div>
+      <div class="about-author-label">Designed &amp; built by</div>
+      <div class="about-author-name">Mahdi Khajvand</div>
+      <div class="about-links">
+        <a href="https://www.linkedin.com/in/mahdi-khajvand-0658602a8?utm_source=share_via&amp;utm_content=profile&amp;utm_medium=member_ios" target="_blank" rel="noopener" aria-label="LinkedIn">LinkedIn</a>
+        <a href="mailto:mehdikhajevand724@gmail.com" aria-label="Email">mehdikhajevand724@gmail.com</a>
+      </div>
+      <div class="about-foot">SYSTEM VERSION 2.0-PRO</div>
+    </div>
+  </div>
+  <div id="helpModal" class="help-modal hidden">
+    <div class="help-backdrop" data-help-close onclick="window.__afCloseHelp&&window.__afCloseHelp()"></div>
+    <div class="help-sheet">
+      <div class="help-head">
+        <h2>راهنمای API Factory</h2>
+        <button type="button" class="btn btn-ghost btn-sm" data-help-close onclick="window.__afCloseHelp&&window.__afCloseHelp()">✕</button>
+      </div>
+      <div class="help-steps" id="helpSteps"></div>
+      <div class="help-nav">
+        <button type="button" class="btn btn-ghost" id="helpPrev" onclick="window.__afHelpPrev && window.__afHelpPrev(event)">قبلی</button>
+        <div class="help-dots" id="helpDots"></div>
+        <button type="button" class="btn btn-primary" id="helpNext" onclick="window.__afHelpNext && window.__afHelpNext(event)">بعدی</button>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
